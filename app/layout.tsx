@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <li><Link href="/about">About Us</Link></li>
             <li><Link href="/#lexai">LexAI</Link></li>
           </ul>
-          <Link href="/before-game" className="mc-btn">Start Simulation &gt;</Link>
+          <Link href="/quests" className="mc-btn">Start Simulation &gt;</Link>
         </nav>
         {children}
       </body>

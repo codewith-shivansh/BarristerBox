@@ -127,9 +127,8 @@ export default function RulesPage() {
           </div>
         </div>
 
-        {/* Action buttons (Not visible in Figma but required for flow) */}
         <div style={{ display: "flex", justifyContent: "center", marginTop: "16px" }}>
-          <Link href="#" className="mc-btn mc-btn-green" style={{ fontSize: "1.5rem", padding: "16px 48px" }}>
+          <Link href="/simulator" className="mc-btn mc-btn-green" style={{ fontSize: "1.5rem", padding: "16px 48px" }}>
             I Agree, Enter Courtroom &gt;
           </Link>
         </div>
