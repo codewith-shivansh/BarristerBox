@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <li><Link href="/#simulator">Simulator</Link></li>
             <li><Link href="/#learning">Learning</Link></li>
             <li><Link href="/about">About Us</Link></li>
-            <li><Link href="/#lexai">LexAI</Link></li>
+            <li><Link href="/lexai">LexAI</Link></li>
           </ul>
           <Link href="/quests" className="mc-btn">Start Simulation &gt;</Link>
         </nav>
