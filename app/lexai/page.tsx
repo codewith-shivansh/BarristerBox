@@ -165,10 +165,10 @@ export default function LexAIPage() {
           <div style={{ display: "flex", gap: "20px" }}>
             
             {/* Feature 1 */}
-            <div style={{ 
+            <Link href="/generate-arguments" style={{ 
               flex: 1, background: "#111", border: "1px solid #333", borderRadius: "8px", 
               padding: "16px", display: "flex", alignItems: "center", gap: "16px",
-              cursor: "pointer", transition: "background 0.2s"
+              cursor: "pointer", transition: "background 0.2s", textDecoration: "none"
             }}>
               <div style={{ 
                 width: "48px", height: "48px", background: "#3d2e0f", border: "2px solid #6d5423", 
@@ -178,7 +178,7 @@ export default function LexAIPage() {
               <div style={{ color: "#e2e8f0", fontWeight: 600, fontSize: "1.1rem", lineHeight: 1.3 }}>
                 Generate<br/>Argument
               </div>
-            </div>
+            </Link>
 
             {/* Feature 2 */}
             <div style={{ 

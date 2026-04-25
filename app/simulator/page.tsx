@@ -21,18 +21,18 @@ export default function SimulatorPage() {
         <div style={{ padding: "8px 24px", border: "1px solid #c89f3a", color: "#c89f3a", borderRadius: "6px", display: "flex", alignItems: "center", gap: "8px", background: "#1f1b11", fontWeight: 600, fontSize: "0.95rem" }}>
           ⚔️ Battle
         </div>
-        <div style={{ padding: "8px 24px", border: "1px solid #1e293b", color: "#94a3b8", borderRadius: "6px", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.95rem", cursor: "pointer" }}>
+        <Link href="/judge-insights" style={{ padding: "8px 24px", border: "1px solid #1e293b", color: "#94a3b8", borderRadius: "6px", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.95rem", cursor: "pointer", textDecoration: "none" }}>
           👨‍⚖️ Judge Insights
-        </div>
-        <div style={{ padding: "8px 24px", border: "1px solid #1e293b", color: "#94a3b8", borderRadius: "6px", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.95rem", cursor: "pointer" }}>
+        </Link>
+        <Link href="/opponent-analysis" style={{ padding: "8px 24px", border: "1px solid #1e293b", color: "#94a3b8", borderRadius: "6px", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.95rem", cursor: "pointer", textDecoration: "none" }}>
           🤖 Opponent Analysis
-        </div>
-        <div style={{ padding: "8px 24px", border: "1px solid #1e293b", color: "#94a3b8", borderRadius: "6px", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.95rem", cursor: "pointer" }}>
+        </Link>
+        <Link href="/learning-mode" style={{ padding: "8px 24px", border: "1px solid #1e293b", color: "#94a3b8", borderRadius: "6px", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.95rem", cursor: "pointer", textDecoration: "none" }}>
           📚 Learning Mode
-        </div>
-        <div style={{ padding: "8px 24px", border: "1px solid #1e293b", color: "#94a3b8", borderRadius: "6px", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.95rem", cursor: "pointer" }}>
+        </Link>
+        <Link href="/case-summary" style={{ padding: "8px 24px", border: "1px solid #1e293b", color: "#94a3b8", borderRadius: "6px", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.95rem", cursor: "pointer", textDecoration: "none" }}>
           📄 Case Summary
-        </div>
+        </Link>
       </div>
 
       {/* Main Content Area */}
@@ -200,9 +200,9 @@ export default function SimulatorPage() {
             <div style={{ fontSize: "0.85rem", color: "#cbd5e1", marginBottom: "12px", fontStyle: "italic" }}>
               "The video is strong circumstantial evidence."
             </div>
-            <button style={{ padding: "8px 16px", background: "transparent", border: "1px solid #c89f3a", color: "#c89f3a", borderRadius: "6px", fontSize: "0.85rem", cursor: "pointer" }}>
+            <Link href="/generate-arguments" style={{ padding: "8px 16px", background: "transparent", border: "1px solid #c89f3a", color: "#c89f3a", borderRadius: "6px", fontSize: "0.85rem", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>
               Counter Suggestion
-            </button>
+            </Link>
           </div>
 
           {/* Outcome Meter */}
