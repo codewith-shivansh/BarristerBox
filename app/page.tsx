@@ -31,7 +31,7 @@ export default function Home() {
           <p style={{ fontSize: "1.2rem", color: "#ddd", marginBottom: "40px", lineHeight: 1.6 }}>
             An AI-powered Minecraft courtroom simulator for law students and lawyers.
           </p>
-          <Link href="#" className="mc-btn" style={{ fontSize: "1.5rem", padding: "16px 32px" }}>
+          <Link href="/prepare" className="mc-btn" style={{ fontSize: "1.5rem", padding: "16px 32px" }}>
             Enter the Courtroom &gt;
           </Link>
         </div>
