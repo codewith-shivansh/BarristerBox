@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BarristerBox
+### *Interactive Legal Simulation & Judicial Framework*
 
-## Getting Started
+BarristerBox is a high-fidelity, Next.js-based platform designed to simulate complex legal proceedings and judicial workflows. It leverages a modern agentic architecture to provide users with an immersive, quest-driven educational experience in law and logic.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 🏛️ Project Overview
+
+This repository houses the core engine for the BarristerBox simulation environment. The architecture is built for scalability, featuring a decoupled quest system and a centralized simulation controller.
+
+### 🌟 Core Modules
+*   **Case Simulator**: A dynamic environment located in `/app/simulator` for executing procedural legal scenarios.
+*   **Quest Engine**: A gamified progression system in `/app/quests` that tracks user decisions and learning outcomes.
+*   **Asset Pipeline**: Optimized delivery of high-resolution environmental assets (backgrounds and UI components) via the `/public` directory.
+*   **Responsive Framework**: A mobile-first, accessible interface powered by Tailwind CSS.
+
+---
+
+## 🛠️ Technical Specification
+
+
+| Layer | Technology |
+| :--- | :--- |
+| **Framework** | Next.js 14+ (App Router) |
+| **Language** | TypeScript (Strict Mode) |
+| **Styling** | Tailwind CSS / PostCSS |
+| **State Management** | React Context & Hooks |
+| **Deployment** | Vercel Optimized |
+
+---
+
+## 📂 Architecture
+
+```text
+barristerbox/
+├── app/                  # Application Layer
+│   ├── simulator/        # Simulation logic and state
+│   ├── quests/           # Progression and quest data
+│   ├── about/            # Project documentation & credits
+│   └── globals.css       # Design system tokens
+├── public/               # Static high-fidelity assets
+├── components/           # Reusable UI primitives
+└── agents.md             # Agentic orchestration notes
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Deployment & Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Local Development
+1. **Clone & Navigate**
+   ```bash
+   git clone https://github.com && cd BarristerBox
+   ```
+2. **Dependency Resolution**
+   ```bash
+   npm install
+   ```
+3. **Initialize Development Server**
+   ```bash
+   npm run dev
+   ```
 
-## Learn More
+### Production Build
+```bash
+npm run build
+npm start
+```
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## ⚖️ Licensing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Distributed under the **MIT License**. See `LICENSE` for more information.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+© 2024 [codewith-shivansh](https://github.com). All rights reserved.
