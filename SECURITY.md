@@ -2,20 +2,25 @@
 
 ## Supported Versions
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+We currently provide security updates for the following versions of **BarristerBox**:
+
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| 1.0.x   | ✅ Active Support  |
+| < 1.0   | ❌ End of Life     |
 
 ## Reporting a Vulnerability
 
-Use this section to tell people how to report a vulnerability.
+The security of this project is a top priority. If you discover a potential security vulnerability, please do not use the public issue tracker.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+To report a vulnerability:
+1. **Initial Report**: Please contact the maintainer directly via GitHub or professional email.
+2. **Details**: Include a detailed description of the vulnerability and steps to reproduce it.
+3. **Response**: You can expect an acknowledgment of your report within 48-72 hours.
+4. **Resolution**: We will coordinate a fix and release a patched version as quickly as possible.
+
+## Security Best Practices
+*   **Dependencies**: Regularly run `npm audit` to check for known vulnerabilities in third-party packages.
+*   **Secrets**: Ensure that no sensitive API keys or environment variables are committed to the public repository.
+*   **Updates**: Always use the latest stable version of Next.js and Node.js.
