@@ -16,7 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <span style={{ fontSize: "2rem" }}>🔨</span> BarresterBox
           </Link>
           <ul className="nav-links">
-            <li><Link href="/#simulator">Simulator</Link></li>
+            <li><Link href="/quests">Simulator</Link></li>
             <li><Link href="/learning">Learning</Link></li>
             <li><Link href="/about">About Us</Link></li>
             <li><Link href="/lexai">LexAI</Link></li>
