@@ -157,7 +157,7 @@ export default function Home() {
                  <li style={{ display: "flex", alignItems: "center", marginBottom: "4px" }}><span className="mc-bullet-green"></span> LexAI basic</li>
                  <li style={{ display: "flex", alignItems: "center", marginBottom: "4px" }}><span className="mc-bullet-green"></span> Leaderboard + XP</li>
                </ul>
-               <button className="pricing-btn pricing-btn-green">Sign Up (Student) &gt;</button>
+               <Link href="/signup-student" className="pricing-btn pricing-btn-green" style={{ display: "inline-block", textAlign: "center", textDecoration: "none" }}>Sign Up (Student) &gt;</Link>
              </div>
           </div>
 
@@ -180,7 +180,7 @@ export default function Home() {
                  <li style={{ display: "flex", alignItems: "center", marginBottom: "4px" }}><span className="mc-bullet-purple"></span> Scenario testing</li>
                  <li style={{ display: "flex", alignItems: "center", marginBottom: "4px" }}><span className="mc-bullet-purple"></span> Exportable reports</li>
                </ul>
-               <button className="pricing-btn pricing-btn-purple">Join as Lawyer &gt;</button>
+               <Link href="/signup-lawyer" className="pricing-btn pricing-btn-purple" style={{ display: "inline-block", textAlign: "center", textDecoration: "none" }}>Join as Lawyer &gt;</Link>
              </div>
           </div>
 
