@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function SimulatorPage() {
   return (
     <div style={{ 
-      position: "fixed", inset: 0, zIndex: 100, 
+      position: "fixed", inset: 0, zIndex: 9999, 
       background: "#080c13", color: "#e2e8f0", 
       display: "flex", flexDirection: "column",
       fontFamily: "'Inter', sans-serif"
@@ -168,7 +169,7 @@ export default function SimulatorPage() {
 
              <div style={{ display: "flex", gap: "16px", marginTop: "24px" }}>
                <button style={{ flex: 1, padding: "12px", background: "transparent", border: "1px solid #3b82f6", color: "#60a5fa", borderRadius: "6px", cursor: "pointer" }}>Retry Case</button>
-               <button style={{ flex: 1, padding: "12px", background: "transparent", border: "1px solid #c89f3a", color: "#c89f3a", borderRadius: "6px", cursor: "pointer" }}>Return to Dashboard</button>
+               <Link href="/" style={{ flex: 1, padding: "12px", background: "transparent", border: "1px solid #c89f3a", color: "#c89f3a", borderRadius: "6px", cursor: "pointer", textAlign: "center", textDecoration: "none" }}>Return to Dashboard</Link>
              </div>
           </div>
 
@@ -249,9 +250,9 @@ export default function SimulatorPage() {
         <button style={{ height: "48px", padding: "0 24px", background: "transparent", border: "1px solid #3b82f6", color: "#60a5fa", borderRadius: "6px", cursor: "pointer", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.95rem" }}>
           <span>🔄</span> Retry Move
         </button>
-        <button style={{ height: "48px", padding: "0 24px", background: "#1f1118", border: "1px solid #7f1d1d", color: "#fca5a5", borderRadius: "6px", cursor: "pointer", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.95rem" }}>
+        <Link href="/" style={{ height: "48px", padding: "0 24px", background: "#1f1118", border: "1px solid #7f1d1d", color: "#fca5a5", borderRadius: "6px", cursor: "pointer", display: "flex", alignItems: "center", gap: "8px", fontSize: "0.95rem", textDecoration: "none" }}>
           <span>🏁</span> End Simulation
-        </button>
+        </Link>
       </div>
 
     </div>
