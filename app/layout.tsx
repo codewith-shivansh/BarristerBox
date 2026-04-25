@@ -18,7 +18,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ul className="nav-links">
             <li><Link href="/#simulator">Simulator</Link></li>
             <li><Link href="/#learning">Learning</Link></li>
-            <li><Link href="/about">Student Dashboard</Link></li>
+            <li><Link href="/about">About Us</Link></li>
             <li><Link href="/#lexai">LexAI</Link></li>
           </ul>
           <Link href="/before-game" className="mc-btn">Start Simulation &gt;</Link>

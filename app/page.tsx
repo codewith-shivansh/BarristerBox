@@ -56,23 +56,30 @@ export default function Home() {
 
       {/* Features Section */}
       <section style={{ padding: "80px 64px" }}>
-        <h2 className="section-title">
-          <span style={{ color: "var(--minecraft-gold)" }}>✦</span> 
-          Legal Quests (Core Features) 
-          <span style={{ color: "var(--minecraft-gold)" }}>✦</span>
-        </h2>
+        <div className="title-divider-container">
+          <div className="title-line"></div>
+          <span className="title-diamond">♦</span>
+          <div className="title-line"></div>
+          <h2 className="section-title">Legal Quests (Core Features)</h2>
+          <div className="title-line"></div>
+          <span className="title-diamond">♦</span>
+          <div className="title-line"></div>
+        </div>
         
         <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: "24px" }}>
           {[
-            { title: "AI Courtroom Simulator", icon: "⚖️", desc: "Battle an AI opponent, react to an AI judge, and sharpen your arguments." },
-            { title: "Strategy Generator", icon: "🧠", desc: "Get AI-generated arguments and counter-arguments before your \"trial\"." },
-            { title: "Learning Engine", icon: "📚", desc: "After each round: strengths, weaknesses, and legal concepts that powered you." },
-            { title: "LexAI Assistant", icon: "🤖", desc: "Ask legal questions, summarize cases, and test your best-argument theories." }
+            { title: "AI Courtroom\nSimulator", icon: "⚖️", desc: "Battle an AI opponent, react to an AI judge, and sharpen your arguments." },
+            { title: "Strategy\nGenerator", icon: "🧠", desc: "Get AI-generated arguments and counter-arguments before your \"trial\"." },
+            { title: "Learning\nEngine", icon: "📖", desc: "After each round: strengths, weaknesses, and legal concepts that powered you." },
+            { title: "LexAI\nAssistant", icon: "🤖", desc: "Ask legal questions, summarize cases, and test your best-argument theories." }
           ].map((f, i) => (
-            <div key={i} className="mc-panel mc-panel-gold" style={{ padding: "32px 24px" }}>
-              <h3 className="pixel-font" style={{ fontSize: "1.5rem", color: "var(--minecraft-gold)", marginBottom: "16px", display: "flex", alignItems: "center", gap: "8px" }}>
-                <span>{f.icon}</span> {f.title}
-              </h3>
+            <div key={i} className="mc-panel mc-panel-gold" style={{ padding: "32px 24px", background: "#151515" }}>
+              <div style={{ display: "flex", alignItems: "flex-start", gap: "12px", marginBottom: "16px" }}>
+                <span style={{ fontSize: "2rem", lineHeight: 1 }}>{f.icon}</span>
+                <h3 className="pixel-font" style={{ fontSize: "1.5rem", color: "var(--minecraft-gold)", whiteSpace: "pre-line", lineHeight: 1.2, margin: 0 }}>
+                  {f.title}
+                </h3>
+              </div>
               <p style={{ color: "#bbb", fontSize: "1rem", lineHeight: 1.6 }}>{f.desc}</p>
             </div>
           ))}
@@ -81,24 +88,37 @@ export default function Home() {
 
       {/* Progression Section */}
       <section style={{ padding: "80px 64px" }}>
-        <div className="mc-panel" style={{ padding: "60px", textAlign: "center", backgroundImage: "linear-gradient(to bottom, #1e1e1e 0%, #151515 100%)" }}>
-          <h2 className="pixel-font" style={{ fontSize: "3rem", marginBottom: "16px", textShadow: "2px 2px 0 #000" }}>Level Up Your Legal Skills</h2>
-          <p style={{ color: "#aaa", marginBottom: "48px" }}>Beginner → Intermediate → Advanced with tracks in Criminal, Constitutional, and Contract Law.</p>
-          
-          <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "24px", flexWrap: "wrap" }}>
-            <div className="mc-panel mc-panel-green" style={{ padding: "16px 32px", display: "flex", alignItems: "center", gap: "16px" }}>
-              <span style={{ fontSize: "2rem" }}>🗡️</span>
-              <span className="pixel-font" style={{ fontSize: "1.8rem" }}>Beginner</span>
-            </div>
-            <div style={{ color: "#555", letterSpacing: "4px", fontSize: "1.5rem" }}>-----&gt;</div>
-            <div className="mc-panel mc-panel-gold" style={{ padding: "16px 32px", display: "flex", alignItems: "center", gap: "16px", borderColor: "#2196f3" }}>
-              <span style={{ fontSize: "2rem" }}>🛡️</span>
-              <span className="pixel-font" style={{ fontSize: "1.8rem" }}>Intermediate</span>
-            </div>
-            <div style={{ color: "#555", letterSpacing: "4px", fontSize: "1.5rem" }}>-----&gt;</div>
-            <div className="mc-panel mc-panel-purple" style={{ padding: "16px 32px", display: "flex", alignItems: "center", gap: "16px" }}>
-              <span style={{ fontSize: "2rem" }}>⭐</span>
-              <span className="pixel-font" style={{ fontSize: "1.8rem" }}>Advanced</span>
+        <div className="mc-panel mc-panel-gold" style={{ 
+          padding: "60px", 
+          textAlign: "center", 
+          position: "relative",
+          overflow: "hidden"
+        }}>
+          {/* Background Image */}
+          <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
+             <Image src="/mc_forest_bg.png" alt="Minecraft Landscape" fill style={{ objectFit: 'cover' }} />
+             <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.6)" }} />
+          </div>
+
+          <div style={{ position: "relative", zIndex: 1 }}>
+            <h2 className="pixel-font" style={{ fontSize: "3rem", marginBottom: "16px", textShadow: "2px 2px 0 #000" }}>Level Up Your Legal Skills</h2>
+            <p style={{ color: "#aaa", marginBottom: "48px", textShadow: "1px 1px 0 #000" }}>Beginner → Intermediate → Advanced with tracks in Criminal,<br/>Constitutional, and Contract Law.</p>
+            
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center", gap: "24px", flexWrap: "wrap" }}>
+              <div className="mc-panel mc-panel-green" style={{ padding: "16px 32px", display: "flex", alignItems: "center", gap: "16px", background: "rgba(30,30,30,0.8)" }}>
+                <span style={{ fontSize: "2rem" }}>🗡️</span>
+                <span className="pixel-font" style={{ fontSize: "1.8rem" }}>Beginner</span>
+              </div>
+              <div style={{ color: "#aaa", letterSpacing: "4px", fontSize: "1.5rem", textShadow: "2px 2px 0 #000" }}>-----&gt;</div>
+              <div className="mc-panel" style={{ padding: "16px 32px", display: "flex", alignItems: "center", gap: "16px", borderTopColor: "#64b5f6", borderLeftColor: "#64b5f6", borderBottomColor: "#1976d2", borderRightColor: "#1976d2", background: "rgba(30,30,30,0.8)" }}>
+                <span style={{ fontSize: "2rem" }}>🛡️</span>
+                <span className="pixel-font" style={{ fontSize: "1.8rem" }}>Intermediate</span>
+              </div>
+              <div style={{ color: "#aaa", letterSpacing: "4px", fontSize: "1.5rem", textShadow: "2px 2px 0 #000" }}>-----&gt;</div>
+              <div className="mc-panel mc-panel-purple" style={{ padding: "16px 32px", display: "flex", alignItems: "center", gap: "16px", background: "rgba(30,30,30,0.8)" }}>
+                <span style={{ fontSize: "2rem" }}>⭐</span>
+                <span className="pixel-font" style={{ fontSize: "1.8rem" }}>Advanced</span>
+              </div>
             </div>
           </div>
         </div>
@@ -106,53 +126,61 @@ export default function Home() {
 
       {/* Pricing Section */}
       <section style={{ padding: "80px 64px 120px" }}>
-        <h2 className="section-title">
-          <span style={{ color: "var(--minecraft-gold)" }}>✦</span> 
-          Join the Legal Guild
-          <span style={{ color: "var(--minecraft-gold)" }}>✦</span>
-        </h2>
+        <div className="title-divider-container">
+          <div className="title-line"></div>
+          <span className="title-diamond">♦</span>
+          <div className="title-line"></div>
+          <h2 className="section-title">Join the Legal Guild</h2>
+          <div className="title-line"></div>
+          <span className="title-diamond">♦</span>
+          <div className="title-line"></div>
+        </div>
 
-        <div style={{ display: "flex", justifyContent: "center", gap: "40px", maxWidth: "1000px", margin: "0 auto", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", justifyContent: "center", gap: "24px", maxWidth: "900px", margin: "0 auto", flexWrap: "wrap" }}>
           
           {/* Student Card */}
-          <div className="mc-panel mc-panel-green" style={{ flex: 1, minWidth: "300px", padding: "40px", display: "flex", gap: "24px" }}>
-             <div style={{ width: "100px", height: "180px", position: "relative", flexShrink: 0 }}>
-               <Image src="/student_char.png" alt="Student" fill style={{ objectFit: 'contain' }} />
+          <div className="pricing-card-container pricing-card-student">
+             <div style={{ width: "130px", position: "relative", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+               <div style={{ width: "100%", height: "240px", position: "relative", zIndex: 1 }}>
+                 <Image src="/student_char.png" alt="Student" fill style={{ objectFit: 'contain', objectPosition: 'center' }} />
+               </div>
              </div>
-             <div style={{ flex: 1 }}>
-               <h3 className="pixel-font" style={{ fontSize: "2rem", color: "#81c784", marginBottom: "8px", display: "flex", alignItems: "center", gap: "8px" }}>
+             <div style={{ flex: 1, paddingLeft: "12px" }}>
+               <h3 className="pixel-font" style={{ fontSize: "1.6rem", color: "#76c62e", marginBottom: "4px", display: "flex", alignItems: "center", gap: "8px" }}>
                  🎓 Students
                </h3>
-               <div className="pixel-font" style={{ fontSize: "3rem", color: "#fff", marginBottom: "24px", textShadow: "2px 2px 0 #000" }}>
-                 ₹99 <span style={{ fontSize: "1.2rem", color: "#aaa" }}>/ month</span>
+               <div className="pixel-font" style={{ fontSize: "3.5rem", color: "#76c62e", marginBottom: "16px", textShadow: "2px 2px 0 rgba(0,0,0,0.5)", lineHeight: 1 }}>
+                 ₹99 <span style={{ fontSize: "1.4rem", color: "#666", textShadow: "none" }}>/ month</span>
                </div>
-               <ul style={{ listStyle: "none", padding: 0, margin: "0 0 32px 0", color: "#ccc", lineHeight: 2 }}>
-                 <li>✅ Access to all cases</li>
-                 <li>✅ LexAI basic</li>
-                 <li>✅ Leaderboard + XP</li>
+               <ul className="pixel-font" style={{ listStyle: "none", padding: 0, margin: "0 0 24px 0", color: "#aaa", lineHeight: 1.6, fontSize: "1.2rem" }}>
+                 <li style={{ display: "flex", alignItems: "center", marginBottom: "4px" }}><span className="mc-bullet-green"></span> Access to all cases</li>
+                 <li style={{ display: "flex", alignItems: "center", marginBottom: "4px" }}><span className="mc-bullet-green"></span> LexAI basic</li>
+                 <li style={{ display: "flex", alignItems: "center", marginBottom: "4px" }}><span className="mc-bullet-green"></span> Leaderboard + XP</li>
                </ul>
-               <button className="mc-btn mc-btn-green" style={{ width: "100%" }}>Sign Up (Student) &gt;</button>
+               <button className="pricing-btn pricing-btn-green">Sign Up (Student) &gt;</button>
              </div>
           </div>
 
           {/* Lawyer Card */}
-          <div className="mc-panel mc-panel-purple" style={{ flex: 1, minWidth: "300px", padding: "40px", display: "flex", gap: "24px" }}>
-             <div style={{ width: "100px", height: "180px", position: "relative", flexShrink: 0 }}>
-               <Image src="/lawyer_char.png" alt="Lawyer" fill style={{ objectFit: 'contain' }} />
+          <div className="pricing-card-container pricing-card-lawyer">
+             <div style={{ width: "130px", position: "relative", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
+               <div style={{ width: "100%", height: "240px", position: "relative", zIndex: 1 }}>
+                 <Image src="/lawyer_char.png" alt="Lawyer" fill style={{ objectFit: 'contain', objectPosition: 'center' }} />
+               </div>
              </div>
-             <div style={{ flex: 1 }}>
-               <h3 className="pixel-font" style={{ fontSize: "2rem", color: "#ba68c8", marginBottom: "8px", display: "flex", alignItems: "center", gap: "8px" }}>
+             <div style={{ flex: 1, paddingLeft: "12px" }}>
+               <h3 className="pixel-font" style={{ fontSize: "1.6rem", color: "#a243d6", marginBottom: "4px", display: "flex", alignItems: "center", gap: "8px" }}>
                  💼 Lawyers
                </h3>
-               <div className="pixel-font" style={{ fontSize: "3rem", color: "#fff", marginBottom: "24px", textShadow: "2px 2px 0 #000" }}>
-                 ₹999 <span style={{ fontSize: "1.2rem", color: "#aaa" }}>/ month</span>
+               <div className="pixel-font" style={{ fontSize: "3.5rem", color: "#a243d6", marginBottom: "16px", textShadow: "2px 2px 0 rgba(0,0,0,0.5)", lineHeight: 1 }}>
+                 ₹999 <span style={{ fontSize: "1.4rem", color: "#666", textShadow: "none" }}>/ month</span>
                </div>
-               <ul style={{ listStyle: "none", padding: 0, margin: "0 0 32px 0", color: "#ccc", lineHeight: 2 }}>
-                 <li>✅ Case upload + strategy</li>
-                 <li>✅ Scenario testing</li>
-                 <li>✅ Exportable reports</li>
+               <ul className="pixel-font" style={{ listStyle: "none", padding: 0, margin: "0 0 24px 0", color: "#aaa", lineHeight: 1.6, fontSize: "1.2rem" }}>
+                 <li style={{ display: "flex", alignItems: "center", marginBottom: "4px" }}><span className="mc-bullet-purple"></span> Case upload + strategy</li>
+                 <li style={{ display: "flex", alignItems: "center", marginBottom: "4px" }}><span className="mc-bullet-purple"></span> Scenario testing</li>
+                 <li style={{ display: "flex", alignItems: "center", marginBottom: "4px" }}><span className="mc-bullet-purple"></span> Exportable reports</li>
                </ul>
-               <button className="mc-btn mc-btn-purple" style={{ width: "100%" }}>Join as Lawyer &gt;</button>
+               <button className="pricing-btn pricing-btn-purple">Join as Lawyer &gt;</button>
              </div>
           </div>
 
