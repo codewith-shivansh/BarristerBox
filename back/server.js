@@ -5,7 +5,16 @@ const cors = require('cors')
 const app = express()
 
 // ── Middleware ──
-app.use(cors())
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'http://localhost:3002',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:3001'
+  ],
+  credentials: true
+}))
 app.use(express.json())
 
 // ── Routes ──
@@ -22,11 +31,19 @@ app.get('/', (req, res) => {
     message: '⚖️ BarresterBox API is LIVE!',
     version: '1.0.0',
     status: 'running',
-    disclaimer: 'This is a learning tool. Not real legal advice.'
+    disclaimer: 'This is a learning tool. Not real legal advice.',
+    routes: {
+      auth:       ['POST /auth/signup', 'POST /auth/login', 'GET /auth/profile'],
+      cases:      ['GET /cases', 'GET /cases/:id'],
+      simulation: ['POST /simulation/start', 'POST /simulation/argue', 'POST /simulation/end', 'GET /simulation/my'],
+      learning:   ['GET /learning/my', 'GET /learning/simulation/:id'],
+      chat:       ['POST /chat/query', 'GET /chat/sessions', 'GET /chat/sessions/:id'],
+      progress:   ['GET /progress/me', 'GET /progress/leaderboard']
+    }
   })
 })
 
-// test route to verify AI integration is working
+// ── Test AI Route ──
 app.get('/test-ai', async (req, res) => {
   const { client, MODEL } = require('./lib/ai')
   try {
@@ -51,7 +68,10 @@ app.get('/test-ai', async (req, res) => {
 
 // ── 404 Handler ──
 app.use((req, res) => {
-  res.status(404).json({ error: '🏛️ This courtroom door does not exist.' })
+  res.status(404).json({
+    error: '🏛️ This courtroom door does not exist.',
+    hint: 'Check GET / for all available routes'
+  })
 })
 
 // ── Global Error Handler ──
@@ -63,5 +83,7 @@ app.use((err, req, res, next) => {
 const PORT = process.env.PORT || 3000
 app.listen(PORT, () => {
   console.log(`🏛️  BarresterBox Backend running on http://localhost:${PORT}`)
-  console.log(`⚖️  Supabase connected: ${process.env.SUPABASE_URL}`)
+  console.log(`⚖️  Supabase: ${process.env.SUPABASE_URL}`)
+  console.log(`🤖  AI Model: ${process.env.OPENROUTER_API_KEY ? 'OpenRouter connected' : '⚠️ No API key found'}`)
+  console.log(`📋  Routes: /auth /cases /simulation /learning /chat /progress`)
 })

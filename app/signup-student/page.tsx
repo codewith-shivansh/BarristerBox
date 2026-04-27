@@ -1,8 +1,48 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function StudentSignUpPage() {
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [fullName, setFullName] = useState("")
+  const [loading, setLoading] = useState(false)
+  const [message, setMessage] = useState("")
+
+  const handleSignup = async () => {
+    if (!email || !password || !fullName) {
+      setMessage("❌ Please fill in all fields.")
+      return
+    }
+    if (password !== confirmPassword) {
+      setMessage("❌ Passwords do not match.")
+      return
+    }
+    setLoading(true)
+    setMessage("")
+    try {
+      const { signup, login } = await import('../lib/api')
+      const signupResult = await signup(email, password, fullName, "Law Student")
+      if (signupResult.user_id) {
+        const loginResult = await login(email, password)
+        if (loginResult.token) {
+          setMessage("✅ Account created! Redirecting to courtroom...")
+          setTimeout(() => window.location.href = "/simulator", 1500)
+        } else {
+          setMessage("✅ Account created! Please login.")
+          setTimeout(() => window.location.href = "/login", 1500)
+        }
+      } else {
+        setMessage("❌ " + (signupResult.error || "Signup failed. Try a different email."))
+      }
+    } catch (err) {
+      setMessage("❌ Something went wrong. Is your backend running?")
+    }
+    setLoading(false)
+  }
+
   return (
     <main style={{ 
       minHeight: "100vh", 
@@ -24,12 +64,10 @@ export default function StudentSignUpPage() {
           display: "flex", flexDirection: "column", justifyContent: "center",
           padding: "0 60px", boxShadow: "0 15px 35px rgba(0,0,0,0.4)"
         }}>
-          {/* Background image & gradient */}
           <div style={{ position: "absolute", inset: 0, zIndex: 0 }}>
              <Image src="/iso_courtroom.png" alt="Library Background" fill style={{ objectFit: 'cover' }} />
              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(90deg, rgba(120,40,30,0.85) 0%, rgba(40,20,30,0.7) 100%)" }} />
           </div>
-          
           <div style={{ position: "relative", zIndex: 1, maxWidth: "700px" }}>
             <h1 style={{ fontSize: "3.5rem", fontWeight: 700, margin: "0 0 16px 0", lineHeight: 1.1 }}>
               Unlock Your<br/>Student Potential
@@ -53,104 +91,126 @@ export default function StudentSignUpPage() {
           
           {/* Create Account Card */}
           <div style={{ background: "#22252e", borderRadius: "12px", padding: "32px", border: "1px solid #333" }}>
-            <h2 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "0 0 24px 0" }}>Create Your Student Account</h2>
+            <h2 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "0 0 24px 0" }}>
+              Create Your Student Account
+            </h2>
+
+            {/* Message Box */}
+            {message && (
+              <div style={{ 
+                padding: "12px 16px", borderRadius: "8px", marginBottom: "20px",
+                background: message.startsWith("✅") ? "#14532d" : "#7f1d1d",
+                border: `1px solid ${message.startsWith("✅") ? "#4ade80" : "#ef4444"}`,
+                color: message.startsWith("✅") ? "#86efac" : "#fca5a5",
+                fontSize: "0.95rem"
+              }}>
+                {message}
+              </div>
+            )}
             
             <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+
+              {/* Full Name */}
               <div>
-                <label style={{ display: "block", marginBottom: "8px", color: "#e2e8f0" }}>Student Name (In-Game or Real)</label>
-                <input type="text" placeholder="e.g. @PixelScholar" style={{ 
-                  width: "100%", padding: "14px 16px", borderRadius: "6px", 
-                  border: "2px solid #86efac", background: "#fff", color: "#111", 
-                  fontSize: "1rem", outline: "none"
-                }} />
-              </div>
-              
-              <div>
-                <label style={{ display: "block", marginBottom: "8px", color: "#e2e8f0" }}>Email / Discord</label>
-                <input type="text" style={{ 
-                  width: "100%", padding: "14px 16px", borderRadius: "6px", 
-                  border: "1px solid #444", background: "#fff", color: "#111", 
-                  fontSize: "1rem", outline: "none"
-                }} />
+                <label style={{ display: "block", marginBottom: "8px", color: "#e2e8f0", fontSize: "0.9rem" }}>
+                  Student Name
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. Lakshya Singh"
+                  value={fullName}
+                  onChange={e => setFullName(e.target.value)}
+                  style={{ 
+                    width: "100%", padding: "14px 16px", borderRadius: "6px", 
+                    border: "2px solid #86efac", background: "#fff", color: "#111", 
+                    fontSize: "1rem", outline: "none", boxSizing: "border-box"
+                  }}
+                />
               </div>
 
+              {/* Email */}
               <div>
-                <label style={{ display: "block", marginBottom: "8px", color: "#e2e8f0" }}>Password</label>
-                <input type="password" placeholder="Password" style={{ 
-                  width: "100%", padding: "14px 16px", borderRadius: "6px", 
-                  border: "1px solid #444", background: "#fff", color: "#111", 
-                  fontSize: "1rem", outline: "none", marginBottom: "12px"
-                }} />
-                <input type="password" placeholder="Confirm Password" style={{ 
-                  width: "100%", padding: "14px 16px", borderRadius: "6px", 
-                  border: "1px solid #444", background: "#fff", color: "#111", 
-                  fontSize: "1rem", outline: "none"
-                }} />
+                <label style={{ display: "block", marginBottom: "8px", color: "#e2e8f0", fontSize: "0.9rem" }}>
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  placeholder="your@gmail.com"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  style={{ 
+                    width: "100%", padding: "14px 16px", borderRadius: "6px", 
+                    border: "1px solid #444", background: "#fff", color: "#111", 
+                    fontSize: "1rem", outline: "none", boxSizing: "border-box"
+                  }}
+                />
               </div>
 
-              <button style={{ 
-                width: "100%", padding: "16px", background: "linear-gradient(180deg, #fde047 0%, #eab308 100%)",
-                color: "#422006", fontSize: "1.1rem", fontWeight: "bold", border: "none",
-                borderRadius: "6px", cursor: "pointer", marginTop: "8px",
-                boxShadow: "0 4px 0 #ca8a04"
-              }}>
-                Continue to Payment
+              {/* Password */}
+              <div>
+                <label style={{ display: "block", marginBottom: "8px", color: "#e2e8f0", fontSize: "0.9rem" }}>
+                  Password
+                </label>
+                <input
+                  type="password"
+                  placeholder="Minimum 6 characters"
+                  value={password}
+                  onChange={e => setPassword(e.target.value)}
+                  style={{ 
+                    width: "100%", padding: "14px 16px", borderRadius: "6px", 
+                    border: "1px solid #444", background: "#fff", color: "#111", 
+                    fontSize: "1rem", outline: "none", marginBottom: "12px",
+                    boxSizing: "border-box"
+                  }}
+                />
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  value={confirmPassword}
+                  onChange={e => setConfirmPassword(e.target.value)}
+                  style={{ 
+                    width: "100%", padding: "14px 16px", borderRadius: "6px", 
+                    border: "1px solid #444", background: "#fff", color: "#111", 
+                    fontSize: "1rem", outline: "none", boxSizing: "border-box"
+                  }}
+                />
+              </div>
+
+              {/* Submit Button */}
+              <button
+                onClick={handleSignup}
+                disabled={loading}
+                style={{ 
+                  width: "100%", padding: "16px",
+                  background: loading ? "#374151" : "linear-gradient(180deg, #fde047 0%, #eab308 100%)",
+                  color: loading ? "#9ca3af" : "#422006",
+                  fontSize: "1.1rem", fontWeight: "bold", border: "none",
+                  borderRadius: "6px", cursor: loading ? "not-allowed" : "pointer",
+                  marginTop: "8px", boxShadow: loading ? "none" : "0 4px 0 #ca8a04",
+                  transition: "all 0.2s"
+                }}
+              >
+                {loading ? "⚖️ Creating Account..." : "🎓 Create Account & Enter Courtroom"}
               </button>
 
               <div style={{ textAlign: "center", marginTop: "8px" }}>
-                <Link href="#" style={{ color: "#4ade80", textDecoration: "none", fontSize: "0.95rem" }}>
-                  Already have account? Log in
+                <Link href="/login" style={{ color: "#4ade80", textDecoration: "none", fontSize: "0.95rem" }}>
+                  Already have an account? Log in
                 </Link>
               </div>
             </div>
           </div>
-
-          {/* Secure Subscription Card */}
-          <div style={{ background: "#22252e", borderRadius: "12px", padding: "32px", border: "1px solid #333" }}>
-            <h2 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "0 0 24px 0" }}>Secure Your Subscription</h2>
-            
-            <div style={{ display: "flex", gap: "16px", marginBottom: "24px" }}>
-              <div style={{ flex: 2 }}>
-                <label style={{ display: "block", marginBottom: "8px", color: "#e2e8f0" }}>Card Number</label>
-                <input type="text" style={{ 
-                  width: "100%", padding: "14px 16px", borderRadius: "6px", 
-                  border: "1px solid #444", background: "#1a1c23", color: "#fff", 
-                  fontSize: "1rem", outline: "none"
-                }} disabled />
-              </div>
-              <div style={{ flex: 1 }}>
-                <label style={{ display: "block", marginBottom: "8px", color: "#e2e8f0" }}>Expiry Date (MM/YY)</label>
-                <input type="text" style={{ 
-                  width: "100%", padding: "14px 16px", borderRadius: "6px", 
-                  border: "1px solid #444", background: "#1a1c23", color: "#fff", 
-                  fontSize: "1rem", outline: "none", marginBottom: "12px"
-                }} disabled />
-                <label style={{ display: "block", marginBottom: "8px", color: "#e2e8f0" }}>CVC</label>
-                <input type="text" style={{ 
-                  width: "100%", padding: "14px 16px", borderRadius: "6px", 
-                  border: "1px solid #444", background: "#1a1c23", color: "#fff", 
-                  fontSize: "1rem", outline: "none"
-                }} disabled />
-              </div>
-            </div>
-
-            <button style={{ 
-              width: "100%", padding: "16px", background: "#fff",
-              color: "#111", fontSize: "1.1rem", fontWeight: "bold", border: "none",
-              borderRadius: "6px", cursor: "pointer", marginBottom: "12px"
-            }}>
-              Subscribe for ₹99/month
-            </button>
-            <p style={{ fontSize: "0.85rem", color: "#9ca3af", margin: 0, textAlign: "center" }}>
-              By clicking "Subscribe", you agree our Terms and Privacy Policy
-            </p>
-          </div>
-
         </div>
 
-        {/* Right Column (Student Pack) */}
-        <div style={{ flex: 1, minWidth: "300px", background: "#22252e", borderRadius: "12px", padding: "32px", border: "1px solid #333", display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <h2 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "0 0 32px 0", textAlign: "center" }}>Your Student Pack</h2>
+        {/* Right Column — Student Pack */}
+        <div style={{ 
+          flex: 1, minWidth: "300px", background: "#22252e", 
+          borderRadius: "12px", padding: "32px", border: "1px solid #333", 
+          display: "flex", flexDirection: "column", alignItems: "center" 
+        }}>
+          <h2 style={{ fontSize: "1.5rem", fontWeight: 600, margin: "0 0 32px 0", textAlign: "center" }}>
+            Your Student Pack
+          </h2>
           
           <div style={{ 
             width: "200px", height: "200px", background: "#fde047", 
@@ -161,15 +221,16 @@ export default function StudentSignUpPage() {
           </div>
 
           <div style={{ fontSize: "2.5rem", fontWeight: 700, color: "#fde047", marginBottom: "32px", textAlign: "center" }}>
-            ₹99 <span style={{ fontSize: "1.2rem", color: "#eab308" }}>/ month</span>
+            Free <span style={{ fontSize: "1.2rem", color: "#eab308" }}>to start</span>
           </div>
 
           <div style={{ display: "flex", flexDirection: "column", gap: "12px", width: "100%", maxWidth: "260px" }}>
             {[
-              "Access to all cases",
-              "LexAI basic",
-              "Leaderboard + XP",
-              "Dedicated Student Support"
+              "Access to all practice cases",
+              "LexAI legal assistant",
+              "Leaderboard + XP system",
+              "AI judge + opponent battles",
+              "Learning feedback after each round"
             ].map((item, i) => (
               <div key={i} style={{ display: "flex", alignItems: "center", gap: "12px" }}>
                 <div style={{ 
@@ -185,16 +246,32 @@ export default function StudentSignUpPage() {
               </div>
             ))}
           </div>
-        </div>
 
+          {/* Quick test note */}
+          <div style={{ 
+            marginTop: "32px", padding: "16px", background: "#111827", 
+            borderRadius: "8px", border: "1px solid #374151", width: "100%"
+          }}>
+            <div style={{ color: "#eab308", fontSize: "0.85rem", fontWeight: 600, marginBottom: "8px" }}>
+              💡 Quick Start
+            </div>
+            <div style={{ color: "#9ca3af", fontSize: "0.82rem", lineHeight: 1.6 }}>
+              After signing up you'll go straight to the courtroom simulator. Make sure your backend is running on port 3000!
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Footer */}
-      <footer style={{ width: "100%", padding: "32px 64px", display: "flex", justifyContent: "space-between", alignItems: "center", background: "#1a1c23", borderTop: "1px solid #333" }}>
+      <footer style={{ 
+        width: "100%", padding: "32px 64px", 
+        display: "flex", justifyContent: "space-between", alignItems: "center", 
+        background: "#1a1c23", borderTop: "1px solid #333" 
+      }}>
         <div style={{ display: "flex", alignItems: "center", gap: "16px", color: "#888", fontSize: "0.9rem" }}>
-          <span style={{ color: "#e2e8f0", fontWeight: 600 }}>BaresterBox</span>
+          <span style={{ color: "#e2e8f0", fontWeight: 600 }}>BarresterBox</span>
           <span>•</span>
-          <span>AI-powered Minecraft courtroom simulator</span>
+          <span>AI-powered courtroom simulator</span>
           <span>•</span>
           <span>"Advisory only"</span>
         </div>
@@ -204,7 +281,6 @@ export default function StudentSignUpPage() {
           <Link href="#" style={{ color: "#888", textDecoration: "none" }}>Contact</Link>
         </div>
       </footer>
-
     </main>
-  );
+  )
 }
