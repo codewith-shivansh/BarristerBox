@@ -1,78 +1,214 @@
-# BarristerBox
-### *Interactive Legal Simulation & Judicial Framework*
+# ⚖️ BarristerBox
 
-BarristerBox is a high-fidelity, Next.js-based platform designed to simulate complex legal proceedings and judicial workflows. It leverages a modern agentic architecture to provide users with an immersive, quest-driven educational experience in law and logic.
+**BarristerBox** is an AI-powered legal simulation platform where users can practice courtroom arguments, receive real-time feedback, and improve their legal reasoning skills.
 
----
-
-## 🏛️ Project Overview
-
-This repository houses the core engine for the BarristerBox simulation environment. The architecture is built for scalability, featuring a decoupled quest system and a centralized simulation controller.
-
-### 🌟 Core Modules
-*   **Case Simulator**: A dynamic environment located in `/app/simulator` for executing procedural legal scenarios.
-*   **Quest Engine**: A gamified progression system in `/app/quests` that tracks user decisions and learning outcomes.
-*   **Asset Pipeline**: Optimized delivery of high-resolution environmental assets (backgrounds and UI components) via the `/public` directory.
-*   **Responsive Framework**: A mobile-first, accessible interface powered by Tailwind CSS.
+> 🚀 Built for students, aspiring lawyers, and anyone interested in understanding legal argumentation.
 
 ---
 
-## 🛠️ Technical Specification
+## 🌟 Features
 
+* ⚔️ **Courtroom Simulation**
 
-| Layer | Technology |
-| :--- | :--- |
-| **Framework** | Next.js 14+ (App Router) |
-| **Language** | TypeScript (Strict Mode) |
-| **Styling** | Tailwind CSS / PostCSS |
-| **State Management** | React Context & Hooks |
-| **Deployment** | Vercel Optimized |
+  * Argue real legal cases against an AI opponent
+  * Structured rounds with argument submission
+
+* 🤖 **AI Opponent**
+
+  * Responds intelligently to your arguments
+  * Challenges weak reasoning and highlights gaps
+
+* 🧑‍⚖️ **Judge Insights**
+
+  * Evaluates performance
+  * Provides strengths, weaknesses, and suggestions
+
+* 📚 **Learning Mode**
+
+  * Personalized feedback based on your arguments
+  * Tracks improvement over time
+
+* 💬 **LexAI Assistant**
+
+  * Ask legal questions instantly
+  * Get simplified explanations of laws and concepts
+
+* 📊 **Progress Tracking**
+
+  * Monitor performance and growth
+  * Leaderboard (competitive learning)
 
 ---
 
-## 📂 Architecture
+## 🏗️ Tech Stack
 
-```text
-barristerbox/
-├── app/                  # Application Layer
-│   ├── simulator/        # Simulation logic and state
-│   ├── quests/           # Progression and quest data
-│   ├── about/            # Project documentation & credits
-│   └── globals.css       # Design system tokens
-├── public/               # Static high-fidelity assets
-├── components/           # Reusable UI primitives
-└── agents.md             # Agentic orchestration notes
+### Frontend
+
+* Next.js (App Router)
+* React
+* Tailwind / Custom Styling
+
+### Backend
+
+* Node.js
+* Express.js
+* Supabase (Database + Auth)
+
+### AI Integration
+
+* OpenRouter API
+* LLaMA / Auto models
+
+---
+
+## ⚙️ Project Structure
+
+```
+BarristerBox/
+├── app/        # Frontend (Next.js)
+├── back/       # Backend (Express API)
+├── public/     # Assets
+└── README.md
 ```
 
 ---
 
-## 🚀 Deployment & Installation
+## 🚀 Getting Started
 
-### Local Development
-1. **Clone & Navigate**
-   ```bash
-   git clone https://github.com && cd BarristerBox
-   ```
-2. **Dependency Resolution**
-   ```bash
-   npm install
-   ```
-3. **Initialize Development Server**
-   ```bash
-   npm run dev
-   ```
+### 1️⃣ Clone the repo
 
-### Production Build
 ```bash
-npm run build
-npm start
+git clone https://github.com/your-username/BarristerBox.git
+cd BarristerBox
 ```
 
 ---
 
-## ⚖️ Licensing
+### 2️⃣ Setup Backend
 
-Distributed under the **MIT License**. See `LICENSE` for more information.
+```bash
+cd back
+npm install
+```
+
+Create `.env` file:
+
+```env
+PORT=8000
+SUPABASE_URL=your_url
+SUPABASE_KEY=your_key
+OPENROUTER_API_KEY=your_key
+```
+
+Run backend:
+
+```bash
+npm run dev
+```
+
+👉 Backend runs on:
+`http://localhost:8000`
 
 ---
-© 2024 [codewith-shivansh](https://github.com). All rights reserved.
+
+### 3️⃣ Setup Frontend
+
+```bash
+cd ..
+npm install
+npm run dev
+```
+
+👉 Frontend runs on:
+`http://localhost:3000`
+
+---
+
+## 🔌 API Endpoints
+
+### Auth
+
+* `POST /auth/signup`
+* `POST /auth/login`
+
+### Cases
+
+* `GET /cases`
+
+### Simulation
+
+* `POST /simulation/start`
+* `POST /simulation/argue`
+* `POST /simulation/end`
+* `GET /simulation/history`
+
+### Learning
+
+* `GET /learning`
+
+### Chat (LexAI)
+
+* `POST /chat`
+
+### Progress
+
+* `GET /progress`
+
+---
+
+## 🧪 Testing Flow
+
+1. Signup → Login → Copy Token
+2. Get cases → Copy case_id
+3. Start simulation → Copy simulation_id
+4. Submit argument
+5. End simulation
+6. Check history, feedback, progress
+
+---
+
+## 🧠 How It Works
+
+1. User submits argument
+2. Backend sends it to AI model
+3. AI generates:
+
+   * Opponent response
+   * Judge feedback
+4. Results stored in database
+5. Frontend displays insights
+
+---
+
+## 📌 Disclaimer
+
+This is a **learning tool only**.
+It does **not provide real legal advice**.
+
+---
+
+## 👨‍💻 Author
+
+Built by Shivansh kumar and Lakshyaa singh @lakshucodes
+
+---
+
+## 💡 Future Improvements
+
+* Real-time chat UI (streaming responses)
+* Advanced judge scoring system
+* Multiplayer courtroom battles
+* Case difficulty levels
+* Voice-based arguments
+
+---
+
+## ⭐ Support
+
+If you like this project:
+
+* Star ⭐ the repo
+* Share it with others
+* Contribute!
+
+---
