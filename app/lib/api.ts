@@ -1,6 +1,5 @@
-const API_URL = 'http://localhost:8000'
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'
 
-// Get token from localStorage
 export const getToken = () => {
   if (typeof window !== 'undefined') {
     return localStorage.getItem('barresterbox_token')
@@ -8,18 +7,15 @@ export const getToken = () => {
   return null
 }
 
-// Save token after login
 export const saveToken = (token: string) => {
   localStorage.setItem('barresterbox_token', token)
 }
 
-// Auth headers
 export const authHeaders = () => ({
   'Content-Type': 'application/json',
   'Authorization': `Bearer ${getToken()}`
 })
 
-// ── AUTH ──
 export const signup = async (email: string, password: string, full_name: string, college: string) => {
   const res = await fetch(`${API_URL}/auth/signup`, {
     method: 'POST',
@@ -40,13 +36,11 @@ export const login = async (email: string, password: string) => {
   return data
 }
 
-// ── CASES ──
 export const getCases = async () => {
   const res = await fetch(`${API_URL}/cases`)
   return res.json()
 }
 
-// ── SIMULATION ──
 export const startSimulation = async (case_id: string) => {
   const res = await fetch(`${API_URL}/simulation/start`, {
     method: 'POST',
@@ -78,7 +72,6 @@ export const endSimulation = async (simulation_id: string) => {
   return res.json()
 }
 
-// ── CHAT ──
 export const askLexAI = async (message: string, session_id?: string) => {
   const res = await fetch(`${API_URL}/chat/query`, {
     method: 'POST',
@@ -88,7 +81,6 @@ export const askLexAI = async (message: string, session_id?: string) => {
   return res.json()
 }
 
-// ── PROGRESS ──
 export const getProgress = async () => {
   const res = await fetch(`${API_URL}/progress/me`, {
     headers: authHeaders()
